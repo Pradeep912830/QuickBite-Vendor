@@ -2,6 +2,7 @@ package com.example.foodorderingadmin;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.widget.ImageView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,6 +11,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 public class AdminAddItem extends AppCompatActivity {
+    ImageView backPressed;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -23,6 +25,9 @@ public class AdminAddItem extends AppCompatActivity {
             return insets;
         });
 
+        backPressed = findViewById(R.id.backPressed);
+
+        backPressed.setOnClickListener(v -> onBackPressed());
 
 
     }

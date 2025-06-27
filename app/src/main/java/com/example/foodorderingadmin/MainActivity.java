@@ -15,7 +15,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
 
-    LinearLayout addItem;
+    LinearLayout addItem, allItems;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -30,12 +30,23 @@ public class MainActivity extends AppCompatActivity {
         });
 
         addItem = findViewById(R.id.addItem);
+        allItems = findViewById(R.id.allItems);
 
 
         addItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, AdminAddItem.class);
+                startActivity(intent);
+            }
+        });
+
+
+
+        allItems.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), AdminAllItem.class);
                 startActivity(intent);
             }
         });

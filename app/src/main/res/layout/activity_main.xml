@@ -200,6 +200,7 @@
 
             <!-- All Item Menu -->
             <LinearLayout
+                android:id="@+id/allItems"
                 android:layout_width="0dp"
                 android:layout_height="108dp"
                 android:layout_weight="1"
