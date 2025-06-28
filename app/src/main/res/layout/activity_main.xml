@@ -53,6 +53,7 @@
 
             <!-- Pending Order -->
             <LinearLayout
+                android:id="@+id/pendingOrder"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -185,7 +186,7 @@
 
                 <ImageView
 
-                    android:layout_width="wrap_content"
+                    android:layout_width="35dp"
                     android:layout_height="35dp"
                     android:src="@drawable/add"
                     app:tint="@color/color_dark" />
