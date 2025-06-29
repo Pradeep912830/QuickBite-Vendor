@@ -236,6 +236,7 @@
 
             <!-- Out For Delivery -->
             <LinearLayout
+                android:id="@+id/outForDelivery"
                 android:layout_width="0dp"
                 android:layout_height="108dp"
                 android:layout_weight="1"
@@ -292,6 +293,7 @@
 
             <!-- Profile -->
             <LinearLayout
+                android:id="@+id/profile"
                 android:layout_width="0dp"
                 android:layout_height="108dp"
                 android:layout_weight="1"

@@ -15,7 +15,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
 
-    LinearLayout addItem, allItems, pendingOrder;
+    LinearLayout addItem, allItems, pendingOrder, outForDelivery, profile;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -32,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
         addItem = findViewById(R.id.addItem);
         allItems = findViewById(R.id.allItems);
         pendingOrder = findViewById(R.id.pendingOrder);
+        outForDelivery = findViewById(R.id.outForDelivery);
+        profile = findViewById(R.id.profile);
 
 
         addItem.setOnClickListener(new View.OnClickListener() {
@@ -43,7 +45,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-
         allItems.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -51,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
 
         pendingOrder.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,6 +62,23 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+        outForDelivery.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), AdminOutForDelivery.class);
+                startActivity(intent);
+            }
+        });
+
+
+        profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), AdminProfile.class);
+                startActivity(intent);
+            }
+        });
 
     }
 }
