@@ -15,7 +15,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
 
-    LinearLayout addItem, allItems, pendingOrder, outForDelivery, profile, newUser;
+    LinearLayout addItem, allItems, pendingOrder, outForDelivery, profile, newUser, logOut;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -35,6 +35,16 @@ public class MainActivity extends AppCompatActivity {
         outForDelivery = findViewById(R.id.outForDelivery);
         profile = findViewById(R.id.profile);
         newUser = findViewById(R.id.newUser);
+        logOut = findViewById(R.id.logOut);
+
+
+        logOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), AdminLogin.class);
+                startActivity(intent);
+            }
+        });
 
         newUser.setOnClickListener(new View.OnClickListener() {
             @Override

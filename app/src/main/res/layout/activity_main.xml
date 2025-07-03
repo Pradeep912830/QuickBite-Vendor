@@ -343,7 +343,6 @@
 
         <!-- Row 4 -->
         <LinearLayout
-            android:id="@+id/newUser"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -351,6 +350,7 @@
 
             <!-- Create New User -->
             <LinearLayout
+                android:id="@+id/newUser"
                 android:layout_width="0dp"
                 android:layout_height="108dp"
                 android:layout_weight="1"
@@ -375,13 +375,14 @@
 
             <!-- Log Out -->
             <LinearLayout
+                android:id="@+id/logOut"
                 android:layout_width="0dp"
                 android:layout_height="108dp"
+                android:layout_margin="8dp"
                 android:layout_weight="1"
                 android:background="@drawable/rounded_box"
                 android:gravity="center"
-                android:orientation="vertical"
-                android:layout_margin="8dp">
+                android:orientation="vertical">
 
                 <ImageView
                     android:layout_width="35dp"
@@ -392,9 +393,9 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
                     android:text="Log Out"
-                    android:textColor="@color/color_dark"
-                    android:layout_marginTop="8dp"/>
+                    android:textColor="@color/color_dark" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

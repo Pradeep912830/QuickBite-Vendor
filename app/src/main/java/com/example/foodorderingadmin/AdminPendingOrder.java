@@ -1,6 +1,8 @@
 package com.example.foodorderingadmin;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.widget.ImageView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,12 +24,20 @@ public class AdminPendingOrder extends AppCompatActivity {
     private PendingOrderAdapter adapter;
     private List<PendingOrder> orderList;
 
+    ImageView backButton;
+
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_pending_order);
 
         pendingRecyclerView = findViewById(R.id.pendingRecyclerView);
+        backButton = findViewById(R.id.backButton);
+
+        backButton.setOnClickListener(v -> onBackPressed());
+
+
         pendingRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         orderList = new ArrayList<>();

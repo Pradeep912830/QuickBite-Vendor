@@ -7,11 +7,14 @@ import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 public class AdminLogin extends AppCompatActivity {
+
+    AppCompatButton btnLogin;
 
     TextView do_notHaveAccount;
     @Override
@@ -26,6 +29,18 @@ public class AdminLogin extends AppCompatActivity {
         });
 
         do_notHaveAccount = findViewById(R.id.do_notHaveAccount);
+        btnLogin = findViewById(R.id.btnLogin);
+
+
+        btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
         do_notHaveAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

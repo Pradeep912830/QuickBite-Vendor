@@ -1,6 +1,8 @@
 package com.example.foodorderingadmin;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.widget.ImageView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,6 +12,9 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class AdminProfile extends AppCompatActivity {
 
+    ImageView backButton;
+
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,5 +25,9 @@ public class AdminProfile extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        backButton = findViewById(R.id.backButton);
+
+        backButton.setOnClickListener(v -> onBackPressed());
     }
 }
