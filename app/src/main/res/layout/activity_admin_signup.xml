@@ -57,7 +57,7 @@
         app:endIconTint="@color/black">
 
         <AutoCompleteTextView
-            android:id="@+id/autoCompleteTextview"
+            android:id="@+id/signupChooseLocation"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="Choose Your Location"
@@ -81,6 +81,7 @@
         android:orientation="vertical">
 
         <EditText
+            android:id="@+id/signupOwnerName"
             android:layout_width="300dp"
             android:layout_height="50dp"
             android:background="@drawable/login_background"
@@ -95,6 +96,7 @@
             android:textStyle="bold" />
 
         <EditText
+            android:id="@+id/signupRestaurantName"
             android:layout_width="300dp"
             android:layout_height="50dp"
             android:background="@drawable/login_background"
@@ -110,7 +112,7 @@
             android:textStyle="bold" />
 
         <EditText
-            android:id="@+id/edtEmail"
+            android:id="@+id/signupPhoneOrEmail"
             android:layout_width="300dp"
             android:layout_height="50dp"
             android:background="@drawable/login_background"
@@ -126,7 +128,7 @@
             android:textStyle="bold" />
 
         <EditText
-            android:id="@+id/edtPassword"
+            android:id="@+id/signupPassword"
             android:layout_width="300dp"
             android:layout_height="50dp"
             android:hint="Your Password Here"
@@ -178,7 +180,7 @@
         android:orientation="horizontal">
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/googleLogin"
+            android:id="@+id/signupWithGoogle"
             android:layout_width="130dp"
             android:layout_height="50dp"
             android:text="Google"
@@ -191,7 +193,7 @@
             android:paddingEnd="10dp"/>
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/facebookLogin"
+            android:id="@+id/signupWithFacebook"
             android:layout_width="130dp"
             android:layout_height="50dp"
             android:text="facebook"

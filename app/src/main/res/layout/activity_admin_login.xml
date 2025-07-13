@@ -47,7 +47,7 @@
         android:orientation="vertical">
 
         <EditText
-            android:id="@+id/edtEmail"
+            android:id="@+id/loginWithEmailOrPhone"
             android:layout_width="300dp"
             android:layout_height="50dp"
             android:background="@drawable/login_background"
@@ -62,7 +62,7 @@
             android:textStyle="bold" />
 
         <EditText
-            android:id="@+id/edtPassword"
+            android:id="@+id/loginPassword"
             android:layout_width="300dp"
             android:layout_height="50dp"
             android:hint="Your password here..."
@@ -116,7 +116,7 @@
         android:orientation="horizontal">
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/googleLogin"
+            android:id="@+id/loginWithGoogle"
             android:layout_width="130dp"
             android:layout_height="50dp"
             android:text="Google"
@@ -129,7 +129,7 @@
             android:paddingEnd="10dp"/>
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/facebookLogin"
+            android:id="@+id/loginWithFacebook"
             android:layout_width="130dp"
             android:layout_height="50dp"
             android:text="facebook"

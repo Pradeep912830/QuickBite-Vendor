@@ -1,0 +1,49 @@
+{
+  "project_info": {
+    "project_number": "924116512087",
+    "firebase_url": "https://shms-da6b9-default-rtdb.firebaseio.com",
+    "project_id": "shms-da6b9",
+    "storage_bucket": "shms-da6b9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:924116512087:android:9f4e5761fed5df2f6a2212",
+        "android_client_info": {
+          "package_name": "com.example.foodorderapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDQLACtL9FQCPvhr8QuCFEFDFgqd9F8BMo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:924116512087:android:90f422f038ed8d0c6a2212",
+        "android_client_info": {
+          "package_name": "com.example.foodorderingadmin"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDQLACtL9FQCPvhr8QuCFEFDFgqd9F8BMo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

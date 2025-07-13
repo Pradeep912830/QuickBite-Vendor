@@ -1,109 +1,101 @@
 package com.example.foodorderingadmin;
 
-import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+import android.content.Intent;
 
-import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
-import java.util.ArrayList;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class AdminSignup extends AppCompatActivity {
 
-    AutoCompleteTextView autoComplete;
-    TextView alreadyHaveAnAccount;
+    private EditText ownerName, restaurantName, emailOrPhone, password;
+    private AutoCompleteTextView chooseLocation;
+    private AppCompatButton btnSignup;
+    private FirebaseAuth mAuth;
+    private DatabaseReference databaseReference;
+    private TextView alreadyHaveAccount;
 
-    AppCompatButton btnSignup;
+    String[] locations = {"Mumbai", "Delhi", "Bangalore", "Hyderabad", "Ahmedabad", "Chennai", "Kolkata", "Pune", "Jaipur", "Surat",
+            "Lucknow", "Kanpur", "Nagpur", "Indore", "Thane", "Bhopal", "Visakhapatnam", "Patna", "Vadodara", "Ghaziabad",
+            "Ludhiana", "Agra", "Nashik", "Faridabad", "Meerut", "Rajkot", "Kalyan-Dombivli", "Vasai-Virar", "Varanasi", "Srinagar",
+            "Aurangabad", "Dhanbad", "Amritsar", "Navi Mumbai", "Allahabad", "Ranchi", "Howrah", "Coimbatore", "Jabalpur", "Gwalior",
+            "Vijayawada", "Jodhpur", "Madurai", "Raipur", "Kota", "Guwahati", "Chandigarh", "Solapur", "Hubli–Dharwad", "Tiruchirappalli"}; // example cities
 
-
-    @SuppressLint({"MissingInflatedId", "ClickableViewAccessibility"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_admin_signup);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+        setContentView(R.layout.activity_admin_signup); // Update with your layout name
 
-        alreadyHaveAnAccount = findViewById(R.id.alreadyHaveAnAccount);
+        mAuth = FirebaseAuth.getInstance();
+        databaseReference = FirebaseDatabase.getInstance().getReference("AdminUsers");
+
+        // Initialize views
+        ownerName = findViewById(R.id.signupOwnerName);
+        restaurantName = findViewById(R.id.signupRestaurantName);
+        emailOrPhone = findViewById(R.id.signupPhoneOrEmail);
+        password = findViewById(R.id.signupPassword);
+        chooseLocation = findViewById(R.id.signupChooseLocation);
         btnSignup = findViewById(R.id.btnSignup);
+        alreadyHaveAccount = findViewById(R.id.alreadyHaveAnAccount);
 
+        // Set up dropdown menu
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, locations);
+        chooseLocation.setAdapter(adapter);
 
-        btnSignup.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(intent);
-            }
+        btnSignup.setOnClickListener(view -> registerAdmin());
+
+        alreadyHaveAccount.setOnClickListener(v -> {
+            startActivity(new Intent(AdminSignup.this, AdminLogin.class));
+            finish();
         });
+    }
 
+    private void registerAdmin() {
+        String owner = ownerName.getText().toString().trim();
+        String restaurant = restaurantName.getText().toString().trim();
+        String email = emailOrPhone.getText().toString().trim();
+        String pass = password.getText().toString().trim();
+        String location = chooseLocation.getText().toString().trim();
 
+        if (owner.isEmpty() || restaurant.isEmpty() || email.isEmpty() || pass.isEmpty() || location.isEmpty()) {
+            Toast.makeText(this, "Please fill in all fields", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
+        // Firebase email-password signup
+        mAuth.createUserWithEmailAndPassword(email, pass)
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        String userId = mAuth.getCurrentUser().getUid();
 
-        alreadyHaveAnAccount.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), AdminLogin.class);
-                startActivity(intent);
-            }
-        });
+                        // Create a new AdminUser object
+                        com.example.foodorderingadmin.AdminUser adminUser = new com.example.foodorderingadmin.AdminUser(owner, restaurant, email, location);
 
-
-
-
-        autoComplete = findViewById(R.id.autoCompleteTextview);
-        ArrayList<String> cityList = new ArrayList<>();
-
-        cityList.add("Bihar");
-        cityList.add("Madhya Pradesh");
-        cityList.add("Jharkhand");
-        cityList.add("Kolkata");
-        cityList.add("Utter Pradesh");
-        cityList.add("Jharkhand");
-        cityList.add("Kolkata");
-        cityList.add("Utter Pradesh");
-        cityList.add("Jharkhand");
-        cityList.add("Kolkata");
-        cityList.add("Utter Pradesh");
-        cityList.add("Jharkhand");
-        cityList.add("Kolkata");
-        cityList.add("Utter Pradesh");
-        cityList.add("Jharkhand");
-        cityList.add("Kolkata");
-        cityList.add("Utter Pradesh");
-
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_list_item_1, cityList);
-        autoComplete.setAdapter(arrayAdapter);
-
-        autoComplete.setFocusable(false);
-        autoComplete.setClickable(true); // still needed for the icon to be clickable
-        autoComplete.setKeyListener(null);
-
-        autoComplete.setOnTouchListener((v, event) -> {
-            // Show dropdown only when the icon is clicked
-            // Assuming the end drawable is on the right (arrow icon)
-            final int DRAWABLE_RIGHT = 2;
-            if (event.getAction() == android.view.MotionEvent.ACTION_UP) {
-                if (event.getRawX() >= (autoComplete.getRight() -
-                        autoComplete.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
-                    autoComplete.showDropDown(); // show dropdown
-                    return true;
-                }
-            }
-            return false;
-        });
-
+                        // Save to Firebase Realtime Database
+                        databaseReference.child(userId).setValue(adminUser)
+                                .addOnCompleteListener(dbTask -> {
+                                    if (dbTask.isSuccessful()) {
+                                        Toast.makeText(this, "Registration successful", Toast.LENGTH_SHORT).show();
+                                        startActivity(new Intent(AdminSignup.this, MainActivity.class)); // Update to your next activity
+                                        finish();
+                                    } else {
+                                        Toast.makeText(this, "Database error: " + dbTask.getException().getMessage(), Toast.LENGTH_LONG).show();
+                                    }
+                                });
+                    } else {
+                        Toast.makeText(this, "Signup failed: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                    }
+                });
     }
 }
