@@ -1,403 +1,427 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
-    android:orientation="vertical"
     android:background="@color/white"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    tools:ignore="ExtraText">
 
-    <!-- Header -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:orientation="horizontal">
+        android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/icon"
-            android:layout_width="52dp"
-            android:layout_height="52dp"
-            android:src="@drawable/adminsplash"
-            android:layout_marginLeft="16dp"/>
-
-        <TextView
-            android:layout_width="wrap_content"
+        <!-- Header -->
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Waves of Food"
-            android:textStyle="bold"
-            android:textSize="30sp"
-            android:textColor="@color/color_dark"
-            android:layout_gravity="center"
-            android:layout_marginLeft="20dp"/>
+            android:layout_marginTop="15dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/icon"
+                android:layout_width="52dp"
+                android:layout_height="52dp"
+                android:src="@drawable/adminsplash"
+                android:layout_marginLeft="16dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Waves of Food"
+                android:textStyle="bold"
+                android:textSize="30sp"
+                android:textColor="@color/color_dark"
+                android:layout_gravity="center"
+                android:layout_marginLeft="20dp"/>
+        </LinearLayout>
+
+        <!-- Card View -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="139dp"
+            android:layout_margin="14dp"
+            app:cardCornerRadius="10dp"
+            android:background="#F4F4F4"
+            android:elevation="15dp"
+            android:padding="10dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:weightSum="3">
+
+                <!-- Pending Order -->
+                <LinearLayout
+                    android:id="@+id/pendingOrder"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/pending"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/baseline_info_outline_24"
+                        app:tint="#F44336" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Pending Order"
+                        android:textAlignment="center"
+                        android:layout_marginLeft="1dp"
+                        android:textColor="@color/color_dark"
+                        android:textSize="17sp"
+                        android:layout_marginTop="10dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="56$"
+                        android:textStyle="bold"
+                        android:layout_marginTop="10dp"
+                        android:textSize="18sp"
+                        android:textColor="@color/black"/>
+                </LinearLayout>
+
+                <!-- Completed Order -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/baseline_check_circle_outline_24"
+                        app:tint="#F670D003" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Completed Order"
+                        android:textAlignment="center"
+                        android:textColor="@color/color_dark"
+                        android:textSize="17sp"
+                        android:layout_marginTop="10dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="56$"
+                        android:textStyle="bold"
+                        android:layout_marginTop="10dp"
+                        android:textSize="18sp"
+                        android:textColor="#F8DF02"/>
+                </LinearLayout>
+
+                <!-- Whole Time Earning -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/dollor" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Whole time earning"
+                        android:textAlignment="center"
+                        android:textColor="@color/color_dark"
+                        android:textSize="17sp"
+                        android:layout_marginTop="10dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="56$"
+                        android:textStyle="bold"
+                        android:layout_marginTop="10dp"
+                        android:textSize="18sp"
+                        android:textColor="#F670D003"/>
+                </LinearLayout>
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+
+
+        <!-- Menu Grid Layout -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:orientation="vertical">
+
+            <!-- Row 1 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="10dp"
+                android:gravity="center">
+
+                <!-- Add Menu -->
+                <LinearLayout
+                    android:id="@+id/addItem"
+                    android:layout_width="0dp"
+                    android:layout_height="100dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/rounded_box"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:clickable="true"
+                    android:focusable="true">
+
+                    <ImageView
+
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/add"
+                        app:tint="@color/color_dark" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Add Menu"
+                        android:textColor="@color/color_dark"
+                        android:layout_marginTop="8dp"/>
+                </LinearLayout>
+
+                <!-- All Item Menu -->
+                <LinearLayout
+                    android:id="@+id/allItems"
+                    android:layout_width="0dp"
+                    android:layout_height="100dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/rounded_box"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:clickable="true"
+                    android:layout_marginLeft="10dp"
+                    android:focusable="true">
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/all"
+                        app:tint="@color/color_dark" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="All Item Menu"
+                        android:textColor="@color/color_dark"
+                        android:layout_marginTop="8dp"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Row 2 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="10dp"
+                android:gravity="center">
+
+                <!-- Out For Delivery -->
+                <LinearLayout
+                    android:id="@+id/outForDelivery"
+                    android:layout_width="0dp"
+                    android:layout_height="100dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/rounded_box"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/out"
+                        app:tint="@color/color_dark" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="Out For Delivery"
+                        android:textColor="@color/color_dark" />
+                </LinearLayout>
+
+                <!-- Feedback -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="100dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/rounded_box"
+                    android:gravity="center"
+                    android:layout_marginLeft="10dp"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/feedback"
+                        app:tint="@color/color_dark" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Feedback"
+                        android:textColor="@color/color_dark"
+                        android:layout_marginTop="8dp"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Row 3 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="10dp"
+                android:gravity="center">
+
+                <!-- Profile -->
+                <LinearLayout
+                    android:id="@+id/profile"
+                    android:layout_width="0dp"
+                    android:layout_height="100dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/rounded_box"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/user"
+                        app:tint="@color/color_dark" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Profile"
+                        android:textColor="@color/color_dark"
+                        android:layout_marginTop="8dp"/>
+                </LinearLayout>
+
+                <!-- Money On Holed -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="100dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/rounded_box"
+                    android:gravity="center"
+                    android:layout_marginLeft="10dp"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:src="@drawable/dollor"
+                        app:tint="@color/color_dark" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Money On Holed"
+                        android:textColor="@color/color_dark"
+                        android:layout_marginTop="8dp"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Row 4 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+                <!-- Create New User -->
+                <LinearLayout
+                    android:id="@+id/newUser"
+                    android:layout_width="0dp"
+                    android:layout_height="100dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/rounded_box"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/newuser"
+                        app:tint="@color/color_dark" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Create New User"
+                        android:textColor="@color/color_dark"
+                        android:layout_marginTop="8dp"/>
+                </LinearLayout>
+
+                <!-- Log Out -->
+                <LinearLayout
+                    android:id="@+id/logOut"
+                    android:layout_width="0dp"
+                    android:layout_height="100dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/rounded_box"
+                    android:gravity="center"
+                    android:layout_marginLeft="10dp"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/logout"
+                        app:tint="@color/color_dark" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="Log Out"
+                        android:textColor="@color/color_dark" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
     </LinearLayout>
 
-    <!-- Card View -->
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="139dp"
-        android:layout_margin="14dp"
-        app:cardCornerRadius="10dp"
-        android:background="#F4F4F4"
-        android:elevation="15dp"
-        android:padding="10dp">
+   <FrameLayout
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:id="@+id/lodingOverLay"
+       android:background="#80000000"
+       android:visibility="gone"
+       android:clickable="true"
+       android:focusable="true">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:weightSum="3">
-
-            <!-- Pending Order -->
-            <LinearLayout
-                android:id="@+id/pendingOrder"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:id="@+id/pending"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:src="@drawable/baseline_info_outline_24"
-                    app:tint="#F44336" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Pending Order"
-                    android:textAlignment="center"
-                    android:layout_marginLeft="1dp"
-                    android:textColor="@color/color_dark"
-                    android:textSize="17sp"
-                    android:layout_marginTop="10dp"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="56$"
-                    android:textStyle="bold"
-                    android:layout_marginTop="10dp"
-                    android:textSize="18sp"
-                    android:textColor="@color/black"/>
-            </LinearLayout>
-
-            <!-- Completed Order -->
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:src="@drawable/baseline_check_circle_outline_24"
-                    app:tint="#F670D003" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Completed Order"
-                    android:textAlignment="center"
-                    android:textColor="@color/color_dark"
-                    android:textSize="17sp"
-                    android:layout_marginTop="10dp"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="56$"
-                    android:textStyle="bold"
-                    android:layout_marginTop="10dp"
-                    android:textSize="18sp"
-                    android:textColor="#F8DF02"/>
-            </LinearLayout>
-
-            <!-- Whole Time Earning -->
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:src="@drawable/dollor" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Whole time earning"
-                    android:textAlignment="center"
-                    android:textColor="@color/color_dark"
-                    android:textSize="17sp"
-                    android:layout_marginTop="10dp"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="56$"
-                    android:textStyle="bold"
-                    android:layout_marginTop="10dp"
-                    android:textSize="18sp"
-                    android:textColor="#F670D003"/>
-            </LinearLayout>
-
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
+       <ProgressBar
+           android:layout_width="50dp"
+           android:layout_height="50dp"
+           android:id="@+id/progressBar"
+           android:layout_gravity="center"
+           style="?android:attr/progressBarStyleLarge"/>
+   </FrameLayout>
 
 
-
-    <!-- Menu Grid Layout -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="10dp">
-
-        <!-- Row 1 -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center">
-
-            <!-- Add Menu -->
-            <LinearLayout
-                android:id="@+id/addItem"
-                android:layout_width="0dp"
-                android:layout_height="108dp"
-                android:layout_weight="1"
-                android:background="@drawable/rounded_box"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:clickable="true"
-                android:focusable="true"
-                android:layout_margin="8dp">
-
-                <ImageView
-
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:src="@drawable/add"
-                    app:tint="@color/color_dark" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Add Menu"
-                    android:textColor="@color/color_dark"
-                    android:layout_marginTop="8dp"/>
-            </LinearLayout>
-
-            <!-- All Item Menu -->
-            <LinearLayout
-                android:id="@+id/allItems"
-                android:layout_width="0dp"
-                android:layout_height="108dp"
-                android:layout_weight="1"
-                android:background="@drawable/rounded_box"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:clickable="true"
-                android:focusable="true"
-                android:layout_margin="8dp">
-
-                <ImageView
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:src="@drawable/all"
-                    app:tint="@color/color_dark" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="All Item Menu"
-                    android:textColor="@color/color_dark"
-                    android:layout_marginTop="8dp"/>
-            </LinearLayout>
-        </LinearLayout>
-
-        <!-- Row 2 -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center">
-
-            <!-- Out For Delivery -->
-            <LinearLayout
-                android:id="@+id/outForDelivery"
-                android:layout_width="0dp"
-                android:layout_height="108dp"
-                android:layout_weight="1"
-                android:background="@drawable/rounded_box"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:layout_margin="8dp">
-
-                <ImageView
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:src="@drawable/out"
-                    app:tint="@color/color_dark" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Out For Delivery"
-                    android:textColor="@color/color_dark"
-                    android:layout_marginTop="8dp"/>
-            </LinearLayout>
-
-            <!-- Feedback -->
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="108dp"
-                android:layout_weight="1"
-                android:background="@drawable/rounded_box"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:layout_margin="8dp">
-
-                <ImageView
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:src="@drawable/feedback"
-                    app:tint="@color/color_dark" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Feedback"
-                    android:textColor="@color/color_dark"
-                    android:layout_marginTop="8dp"/>
-            </LinearLayout>
-        </LinearLayout>
-
-        <!-- Row 3 -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center">
-
-            <!-- Profile -->
-            <LinearLayout
-                android:id="@+id/profile"
-                android:layout_width="0dp"
-                android:layout_height="108dp"
-                android:layout_weight="1"
-                android:background="@drawable/rounded_box"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:layout_margin="8dp">
-
-                <ImageView
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:src="@drawable/user"
-                    app:tint="@color/color_dark" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Profile"
-                    android:textColor="@color/color_dark"
-                    android:layout_marginTop="8dp"/>
-            </LinearLayout>
-
-            <!-- Money On Holed -->
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="108dp"
-                android:layout_weight="1"
-                android:background="@drawable/rounded_box"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:layout_margin="8dp">
-
-                <ImageView
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:src="@drawable/dollor"
-                    app:tint="@color/color_dark" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Money On Holed"
-                    android:textColor="@color/color_dark"
-                    android:layout_marginTop="8dp"/>
-            </LinearLayout>
-        </LinearLayout>
-
-        <!-- Row 4 -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center">
-
-            <!-- Create New User -->
-            <LinearLayout
-                android:id="@+id/newUser"
-                android:layout_width="0dp"
-                android:layout_height="108dp"
-                android:layout_weight="1"
-                android:background="@drawable/rounded_box"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:layout_margin="8dp">
-
-                <ImageView
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:src="@drawable/newuser"
-                    app:tint="@color/color_dark" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Create New User"
-                    android:textColor="@color/color_dark"
-                    android:layout_marginTop="8dp"/>
-            </LinearLayout>
-
-            <!-- Log Out -->
-            <LinearLayout
-                android:id="@+id/logOut"
-                android:layout_width="0dp"
-                android:layout_height="108dp"
-                android:layout_margin="8dp"
-                android:layout_weight="1"
-                android:background="@drawable/rounded_box"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:src="@drawable/logout"
-                    app:tint="@color/color_dark" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="Log Out"
-                    android:textColor="@color/color_dark" />
-            </LinearLayout>
-        </LinearLayout>
-    </LinearLayout>
-
-</LinearLayout>
+</FrameLayout>
