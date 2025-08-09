@@ -6,6 +6,7 @@ public class FoodItem {
     private String price;
     private String imageUrl;
     private int quantity;
+    private String key;
 
     public FoodItem() {
         // Needed for Firebase
@@ -30,4 +31,11 @@ public class FoodItem {
     public void setPrice(String price) { this.price = price; }
     public void setImageUrl(String imageUrl) { this.imageUrl = imageUrl; }
     public void setQuantity(int quantity) { this.quantity = quantity; }
+    public void setKey(String key){
+        this.key = key;
+    }
+
+    public String getKey(){
+        return key;
+    }
 }

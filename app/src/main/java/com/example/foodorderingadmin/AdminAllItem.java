@@ -53,6 +53,7 @@ public class AdminAllItem extends AppCompatActivity {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     FoodItem item = dataSnapshot.getValue(FoodItem.class);
                     if (item != null) {
+                        item.setKey(dataSnapshot.getKey());
                         itemList.add(item);
                     }
                 }

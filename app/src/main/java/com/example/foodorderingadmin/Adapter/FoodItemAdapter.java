@@ -1,5 +1,7 @@
 package com.example.foodorderingadmin.Adapter;
 
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,6 +9,8 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.bumptech.glide.Glide;
 
 
@@ -14,16 +18,18 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.foodorderingadmin.Model.FoodItem;
 import com.example.foodorderingadmin.R;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.List;
 
 public class FoodItemAdapter extends RecyclerView.Adapter<FoodItemAdapter.ViewHolder> {
 
     private List<FoodItem> foodItemList;
-    Context contex;
+    Context context;
 
     public FoodItemAdapter(Context context , List<FoodItem> foodItemList) {
-        this.contex = context;
+        this.context = context;
         this.foodItemList = foodItemList;
     }
 
@@ -82,10 +88,46 @@ public class FoodItemAdapter extends RecyclerView.Adapter<FoodItemAdapter.ViewHo
         });
 
         holder.buttonDelete.setOnClickListener(v -> {
-            foodItemList.remove(position);
-            notifyItemRemoved(position);
-            notifyItemRangeChanged(position, foodItemList.size());
+            // Show confirmation dialog
+            new AlertDialog.Builder(context)
+                    .setTitle("Delete Item")
+                    .setMessage("Are you sure you want to delete this item?")
+                    .setPositiveButton("Delete", (dialog, which) -> {
+
+                        // Show progress dialog
+                        ProgressDialog progressDialog = new ProgressDialog(context);
+                        progressDialog.setMessage("Deleting item...");
+                        progressDialog.setCancelable(false);
+                        progressDialog.show();
+
+                        String itemKey = item.getKey();
+                        if (itemKey != null) {
+                            DatabaseReference ref = FirebaseDatabase.getInstance()
+                                    .getReference("FoodItems")
+                                    .child(itemKey);
+
+                            ref.removeValue()
+                                    .addOnSuccessListener(aVoid -> {
+                                        progressDialog.dismiss();
+                                        foodItemList.remove(position);
+                                        notifyItemRemoved(position);
+                                        notifyItemRangeChanged(position, foodItemList.size());
+                                        Toast.makeText(context, "Item deleted", Toast.LENGTH_SHORT).show();
+                                    })
+                                    .addOnFailureListener(e -> {
+                                        progressDialog.dismiss();
+                                        Toast.makeText(context, "Failed to delete: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                                    });
+                        } else {
+                            progressDialog.dismiss();
+                            Toast.makeText(context, "Error: Item key not found", Toast.LENGTH_SHORT).show();
+                        }
+
+                    })
+                    .setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss())
+                    .show();
         });
+
     }
 
     @Override
