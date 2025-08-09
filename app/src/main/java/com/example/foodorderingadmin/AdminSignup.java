@@ -1,9 +1,13 @@
 package com.example.foodorderingadmin;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.content.Intent;
@@ -25,6 +29,7 @@ public class AdminSignup extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private DatabaseReference databaseReference;
     private TextView alreadyHaveAccount;
+    FrameLayout loadingOverLay;
 
     String[] locations = {"Mumbai", "Delhi", "Bangalore", "Hyderabad", "Ahmedabad", "Chennai", "Kolkata", "Pune", "Jaipur", "Surat",
             "Lucknow", "Kanpur git ", "Nagpur", "Indore", "Thane", "Bhopal", "Visakhapatnam", "Patna", "Vadodara", "Ghaziabad",
@@ -32,6 +37,7 @@ public class AdminSignup extends AppCompatActivity {
             "Aurangabad", "Dhanbad", "Amritsar", "Navi Mumbai", "Allahabad", "Ranchi", "Howrah", "Coimbatore", "Jabalpur", "Gwalior",
             "Vijayawada", "Jodhpur", "Madurai", "Raipur", "Kota", "Guwahati", "Chandigarh", "Solapur", "Hubli–Dharwad", "Tiruchirappalli"}; // example cities
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +54,7 @@ public class AdminSignup extends AppCompatActivity {
         chooseLocation = findViewById(R.id.signupChooseLocation);
         btnSignup = findViewById(R.id.btnSignup);
         alreadyHaveAccount = findViewById(R.id.alreadyHaveAnAccount);
+        loadingOverLay = findViewById(R.id.LoadingOverLay);
 
         // Set up dropdown menu
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, locations);
@@ -62,40 +69,57 @@ public class AdminSignup extends AppCompatActivity {
     }
 
     private void registerAdmin() {
-        String owner = ownerName.getText().toString().trim();
-        String restaurant = restaurantName.getText().toString().trim();
-        String email = emailOrPhone.getText().toString().trim();
-        String pass = password.getText().toString().trim();
-        String location = chooseLocation.getText().toString().trim();
 
-        if (owner.isEmpty() || restaurant.isEmpty() || email.isEmpty() || pass.isEmpty() || location.isEmpty()) {
+        String ownerVal = ownerName.getText().toString().trim();
+        String restaurantVal = restaurantName.getText().toString().trim();
+        String emailVal = emailOrPhone.getText().toString().trim();
+        String locationVal = chooseLocation.getText().toString().trim();
+
+        String pass = password.getText().toString().trim();
+
+
+        if (ownerVal.isEmpty() || restaurantVal.isEmpty() || emailVal.isEmpty() || pass.isEmpty() || locationVal.isEmpty()) {
             Toast.makeText(this, "Please fill in all fields", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        // Firebase email-password signup
-        mAuth.createUserWithEmailAndPassword(email, pass)
+        loadingOverLay.setVisibility(View.VISIBLE);
+
+        mAuth.createUserWithEmailAndPassword(emailVal, pass)
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         String userId = mAuth.getCurrentUser().getUid();
 
-                        // Create a new AdminUser object
-                        com.example.foodorderingadmin.AdminUser adminUser = new com.example.foodorderingadmin.AdminUser(owner, restaurant, email, location);
-
-                        // Save to Firebase Realtime Database
+                        com.example.foodorderingadmin.Model.AdminUser adminUser =
+                                new com.example.foodorderingadmin.Model.AdminUser(ownerVal, restaurantVal, emailVal, locationVal);
                         databaseReference.child(userId).setValue(adminUser)
                                 .addOnCompleteListener(dbTask -> {
+                                    loadingOverLay.setVisibility(View.GONE);
                                     if (dbTask.isSuccessful()) {
-                                        Toast.makeText(this, "Registration successful", Toast.LENGTH_SHORT).show();
-                                        startActivity(new Intent(AdminSignup.this, MainActivity.class)); // Update to your next activity
+                                        Log.d("SignupDebug", "Data saved to DB");
+                                        startActivity(new Intent(AdminSignup.this, MainActivity.class));
                                         finish();
                                     } else {
+                                        Log.e("SignupDebug", "DB write failed: " + dbTask.getException().getMessage());
                                         Toast.makeText(this, "Database error: " + dbTask.getException().getMessage(), Toast.LENGTH_LONG).show();
                                     }
+                                })
+                                .addOnFailureListener(e -> {
+                                    loadingOverLay.setVisibility(View.GONE);
+                                    Log.e("SignupDebug", "DB failure: " + e.getMessage());
+                                    Toast.makeText(this, "DB error: " + e.getMessage(), Toast.LENGTH_LONG).show();
                                 });
+
+
                     } else {
+                        loadingOverLay.setVisibility(View.GONE);
                         Toast.makeText(this, "Signup failed: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
                     }
+                })
+                .addOnFailureListener(e -> {
+                    loadingOverLay.setVisibility(View.GONE);
+                    Toast.makeText(this, "Signup failed: " + e.getMessage(), Toast.LENGTH_LONG).show();
                 });
     }
+
 }

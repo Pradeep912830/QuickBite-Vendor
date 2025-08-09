@@ -6,6 +6,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -74,6 +75,7 @@ public class AdminLogin extends AppCompatActivity {
         loginWithGoogle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                loadingOverLay.setVisibility(View.VISIBLE);
                 GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                         .requestIdToken(getString(R.string.default_web_client_id))
                         .requestEmail()
@@ -82,7 +84,9 @@ public class AdminLogin extends AppCompatActivity {
                 GoogleSignInClient mGoogleSignInClient = com.google.android.gms.auth.api.signin.GoogleSignIn.getClient(AdminLogin.this, gso);
                 Intent signInIntent = mGoogleSignInClient.getSignInIntent();
                 startActivityForResult(signInIntent, GOOGLE_SIGN_IN_CODE);
+
             }
+
         });
     }
 
@@ -125,6 +129,7 @@ public class AdminLogin extends AppCompatActivity {
 
                         } else {
                             Toast.makeText(AdminLogin.this, "Account does not exist. Please register first.", Toast.LENGTH_LONG).show();
+                            loadingOverLay.setVisibility(View.GONE);
 
                             com.google.android.gms.auth.api.signin.GoogleSignIn.getClient(AdminLogin.this,
                                     new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).build()).signOut();
@@ -143,7 +148,6 @@ public class AdminLogin extends AppCompatActivity {
 
 
     private void loginAdmin() {
-        loadingOverLay.setVisibility(View.VISIBLE);
         String emailOrPhone = emailOrPhoneEditText.getText().toString().trim();
         String password = passwordEditText.getText().toString().trim();
 
@@ -157,14 +161,20 @@ public class AdminLogin extends AppCompatActivity {
             return;
         }
 
+        loadingOverLay.setVisibility(View.VISIBLE);
         mAuth.signInWithEmailAndPassword(emailOrPhone, password)
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         startActivity(new Intent(AdminLogin.this, MainActivity.class));
+                        loadingOverLay.setVisibility(View.GONE);
                         finish();
                     } else {
-                        Toast.makeText(AdminLogin.this, "Login Failed: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
+
+                       loadingOverLay.setVisibility(View.GONE);
+                       Toast.makeText(this, "Login failed!", Toast.LENGTH_SHORT).show();
+
                     }
+
                 });
     }
 }

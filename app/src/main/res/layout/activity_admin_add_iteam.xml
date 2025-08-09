@@ -46,23 +46,45 @@
                 android:layout_gravity="center_horizontal" />
         </LinearLayout>
 
-        <!-- Item Name -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Enter Food Name"
+            android:layout_gravity="left"
+            android:layout_marginTop="16dp"
+            android:layout_marginLeft="16dp"
+            android:textStyle="bold"
+            android:textSize="16sp"/>
+
         <EditText
+            android:id="@+id/itemName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Item Name"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="6dp"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:padding="12dp"
             android:background="@drawable/edittext_background" />
 
         <!-- Item Price -->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Enter Food Price"
+            android:layout_gravity="left"
+            android:layout_marginTop="16dp"
+            android:layout_marginLeft="16dp"
+            android:textStyle="bold"
+            android:textSize="16sp"/>
+
         <EditText
+            android:id="@+id/itemPrice"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Item Price"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="6dp"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:padding="12dp"
@@ -70,10 +92,21 @@
             android:background="@drawable/edittext_background" />
 
         <!-- Item Image and Upload Button -->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Select Food Image"
+            android:layout_gravity="left"
+            android:layout_marginTop="16dp"
+            android:layout_marginLeft="16dp"
+            android:textStyle="bold"
+            android:textSize="16sp"/>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="6dp"
             android:orientation="horizontal"
             android:gravity="center_vertical"
             android:layout_marginLeft="16dp"
@@ -85,11 +118,10 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textColor="@color/color_lite"
-                android:textStyle="bold"
-                android:text="Item Image" />
+                android:hint="Item Image" />
 
             <ImageView
+                android:id="@+id/chooseImage"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:src="@drawable/add"
@@ -100,64 +132,77 @@
         <androidx.cardview.widget.CardView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="16dp"
             android:layout_gravity="center"
             card_view:cardCornerRadius="8dp"
             card_view:cardElevation="4dp">
 
             <ImageView
+                android:id="@+id/showImage"
                 android:layout_width="200dp"
                 android:layout_height="150dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/food" /> <!-- Replace with your image -->
+                android:adjustViewBounds="true"
+                android:background="#CCCCCC"
+                android:src="@drawable/food" />
         </androidx.cardview.widget.CardView>
 
         <!-- Short Description -->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Enter Food Description"
+            android:layout_gravity="left"
+            android:layout_marginTop="16dp"
+            android:layout_marginLeft="16dp"
+            android:textStyle="bold"
+            android:textSize="16sp"/>
+
         <EditText
+            android:id="@+id/descriptionOfFood"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="6dp"
             android:hint="Short Description"
-            android:minLines="3"
+            android:minLines="2"
             android:gravity="top|start"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:background="@drawable/edittext_background"
             android:padding="12dp" />
 
-        <!-- Dummy Description Text -->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:text="Lorem ipsum dolor sit amet,\nconsectetur adipiscing elit,\nsed do eiusmod tempor incididunt\nut labore et dolore magna aliqua. Ut enim ad"
-            android:textSize="14sp" />
-
         <!-- Ingredients List -->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Enter Food Ingredients"
+            android:layout_gravity="left"
+            android:layout_marginTop="16dp"
+            android:layout_marginLeft="16dp"
+            android:textStyle="bold"
+            android:textSize="16sp"/>
+
         <EditText
+            android:id="@+id/ingredientsOfFood"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="6dp"
             android:hint="Ingredients"
+            android:minLines="2"
+            android:gravity="top|start"
+            android:inputType="textMultiLine"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:background="@drawable/edittext_background"
             android:padding="12dp"
-            android:enabled="false" />
+            android:enabled="true" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="• Noddle\n• Salad\n• Burger\n• Herbal Pan Cake\n• Momos"
-            android:layout_marginTop="4dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:textSize="14sp" />
 
         <!-- Add Item Button -->
         <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/addItemButton"
             android:layout_width="match_parent"
             android:layout_height="55dp"
             android:layout_marginTop="24dp"

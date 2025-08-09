@@ -1,27 +1,33 @@
 package com.example.foodorderingadmin.Model;
 
 public class FoodItem {
-    private int imageResId;
     private String name;
-    private String source;
+    private String description; // you called it source earlier
     private String price;
+    private String imageUrl;
     private int quantity;
 
-    public FoodItem(int imageResId, String name, String source, String price, int quantity) {
-        this.imageResId = imageResId;
+    public FoodItem() {
+        // Needed for Firebase
+    }
+
+    public FoodItem(String name, String description, String price, String imageUrl, int quantity) {
         this.name = name;
-        this.source = source;
+        this.description = description;
         this.price = price;
+        this.imageUrl = imageUrl;
         this.quantity = quantity;
     }
 
-
-    public int getImageResId() { return imageResId; }
     public String getName() { return name; }
-    public String getSource() { return source; }
+    public String getDescription() { return description; }
     public String getPrice() { return price; }
+    public String getImageUrl() { return imageUrl; }
     public int getQuantity() { return quantity; }
 
+    public void setName(String name) { this.name = name; }
+    public void setDescription(String description) { this.description = description; }
+    public void setPrice(String price) { this.price = price; }
+    public void setImageUrl(String imageUrl) { this.imageUrl = imageUrl; }
     public void setQuantity(int quantity) { this.quantity = quantity; }
-
 }
