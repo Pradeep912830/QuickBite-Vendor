@@ -15,15 +15,14 @@
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:src="@drawable/back"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="20dp"/>
+        android:layout_marginLeft="10dp"/>
 
     <ImageView
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:src="@drawable/adminsplash"
         android:layout_gravity="center"
-        android:layout_marginTop="30dp"/>
+        android:layout_marginTop="18dp"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -31,8 +30,7 @@
         android:text="Waves of Food"
         android:textColor="@color/color_lite"
         android:layout_gravity="center"
-        android:layout_marginTop="5dp"
-        android:textSize="25sp"/>
+        android:textSize="20sp"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -42,8 +40,7 @@
         android:layout_gravity="center"
         android:textAlignment="center"
         android:textStyle="bold"
-        android:textSize="20sp"
-        android:layout_marginTop="15dp"/>
+        android:textSize="17sp"/>
 
 
     <LinearLayout
@@ -58,7 +55,7 @@
         android:orientation="vertical">
 
         <EditText
-            android:id="@+id/edtEmail"
+            android:id="@+id/nameOfVendor"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:background="@drawable/edittext_background"
@@ -73,7 +70,7 @@
             android:textStyle="bold" />
 
         <EditText
-            android:id="@+id/edtEmai"
+            android:id="@+id/emailOfVendor"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:background="@drawable/edittext_background"
@@ -89,7 +86,40 @@
             android:textStyle="bold" />
 
         <EditText
-            android:id="@+id/edtPassword"
+            android:id="@+id/RestNameOfVendor"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@drawable/edittext_background"
+            android:drawableLeft="@drawable/user"
+            android:drawablePadding="10dp"
+            android:elevation="5dp"
+            android:hint="Name of Restaurant"
+            android:layout_marginTop="10dp"
+            android:inputType="textEmailAddress"
+            android:paddingLeft="12dp"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/locationOfVendor"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@drawable/edittext_background"
+            android:drawableLeft="@drawable/user"
+            android:drawablePadding="10dp"
+            android:elevation="5dp"
+            android:hint="Location of Restaurant"
+            android:layout_marginTop="10dp"
+            android:inputType="textEmailAddress"
+            android:paddingLeft="12dp"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+
+        <EditText
+            android:id="@+id/passwordOfVendor"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:hint="Your password here"
@@ -107,21 +137,20 @@
     </LinearLayout>
 
     <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/createNewUserButton"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="57dp"
         android:layout_marginTop="24dp"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:text="Create New User"
         android:textSize="17sp"
-        android:textColor="#FFFFFF"
-        android:backgroundTint="#D52B1E"
+        android:textColor="#D52B1E"
         android:paddingHorizontal="32dp"
-        android:layout_marginBottom="20dp"
         android:textAllCaps="false"
         android:paddingVertical="12dp"
         android:textStyle="bold"
         android:layout_gravity="center_horizontal"
-        android:background="@drawable/rounded_button" />
+        android:background="@drawable/white_background" />
 
 </LinearLayout>

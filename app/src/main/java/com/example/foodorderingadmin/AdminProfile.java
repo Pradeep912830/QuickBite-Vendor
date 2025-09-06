@@ -32,7 +32,6 @@ public class AdminProfile extends AppCompatActivity {
     ImageView backButton, editProfileIcon;
     EditText ownerNameUpdate, emailUpdate, restaurantNameUpdate, locationUpdate;
     AppCompatButton btnUpdate;
-
     FirebaseAuth auth;
     DatabaseReference reference;
     String uid;
