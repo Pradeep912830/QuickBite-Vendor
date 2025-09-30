@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:text="Pending Order"
         android:layout_gravity="center"
-        android:textSize="25sp"
+        android:textSize="22sp"
         android:textStyle="bold"
         android:textColor="@color/color_dark"/>
 

@@ -10,6 +10,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AlertDialog;
@@ -25,7 +26,8 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
 
-    LinearLayout addItem, allItems, pendingOrder, outForDelivery, profile, newUser, logOut;
+    LinearLayout addItem, allItems, pendingOrder, outForDelivery, profile, newUser, logOut,
+            wholeTimeEarning, completedOrder, feedback, totalMoney;
     ProgressBar progressBar;
     FrameLayout loadingOverLay;
     @SuppressLint("MissingInflatedId")
@@ -49,6 +51,42 @@ public class MainActivity extends AppCompatActivity {
         logOut = findViewById(R.id.logOut);
         progressBar = findViewById(R.id.progressBar);
         loadingOverLay = findViewById(R.id.lodingOverLay);
+        completedOrder = findViewById(R.id.completedOrder);
+        wholeTimeEarning = findViewById(R.id.wholeTimeEarning);
+        feedback = findViewById(R.id.feedback);
+        totalMoney = findViewById(R.id.totalMoney);
+
+
+        completedOrder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MainActivity.this, "This feature will be implemented very soon!", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+        wholeTimeEarning.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MainActivity.this, "This feature will be implemented very soon!", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+        feedback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MainActivity.this, "This feature will be implemented very soon!", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+        totalMoney.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MainActivity.this, "This feature will be implemented very soon!", Toast.LENGTH_SHORT).show();
+            }
+        });
 
 
         logOut.setOnClickListener(new View.OnClickListener() {

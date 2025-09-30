@@ -94,6 +94,7 @@
 
                 <!-- Completed Order -->
                 <LinearLayout
+                    android:id="@+id/completedOrder"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -127,6 +128,7 @@
 
                 <!-- Whole Time Earning -->
                 <LinearLayout
+                    android:id="@+id/wholeTimeEarning"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -267,6 +269,7 @@
 
                 <!-- Feedback -->
                 <LinearLayout
+                    android:id="@+id/feedback"
                     android:layout_width="0dp"
                     android:layout_height="100dp"
                     android:layout_weight="1"
@@ -324,6 +327,7 @@
 
                 <!-- Money On Holed -->
                 <LinearLayout
+                    android:id="@+id/totalMoney"
                     android:layout_width="0dp"
                     android:layout_height="100dp"
                     android:layout_weight="1"

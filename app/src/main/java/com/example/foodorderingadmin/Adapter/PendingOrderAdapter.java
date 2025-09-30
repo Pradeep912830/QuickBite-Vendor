@@ -1,6 +1,7 @@
 package com.example.foodorderingadmin.Adapter;
 
 import android.content.Context;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.appcompat.widget.AppCompatButton;
 
+import com.bumptech.glide.Glide;
 import com.example.foodorderingadmin.Model.PendingOrder;
 import com.example.foodorderingadmin.R;
 
@@ -35,10 +37,13 @@ public class PendingOrderAdapter extends RecyclerView.Adapter<PendingOrderAdapte
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         PendingOrder order = orderList.get(position);
-        holder.customerName.setText(order.getCustomerName());
-        holder.quantity.setText(String.valueOf(order.getQuantity()));
-        holder.foodImage.setImageResource(order.getFoodImageResId());
-        holder.buttonAction.setText(order.getActionText());
+        holder.foodName.setText(order.getFoodName());
+        holder.foodQuantity.setText(String.valueOf(order.getFoodQuantity()));
+        holder.foodPrice.setText(String.valueOf(order.getFoodPrice()));
+        holder.pendingButton.setText(order.getPendingButton());
+
+        Glide.with(context).load(order.getFoodImage()).into(holder.foodImage);
+
     }
 
     @Override
@@ -48,15 +53,16 @@ public class PendingOrderAdapter extends RecyclerView.Adapter<PendingOrderAdapte
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         ImageView foodImage;
-        TextView customerName, quantity;
-        AppCompatButton buttonAction;
+        TextView foodName, foodPrice, foodQuantity;
+        AppCompatButton pendingButton;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            foodImage = itemView.findViewById(R.id.food);
-            customerName = itemView.findViewById(R.id.text_customer_name);
-            quantity = itemView.findViewById(R.id.quantity);
-            buttonAction = itemView.findViewById(R.id.button_action);
+            foodImage = itemView.findViewById(R.id.foodImage);
+            foodName = itemView.findViewById(R.id.foodName);
+            foodPrice = itemView.findViewById(R.id.foodPrice);
+            pendingButton = itemView.findViewById(R.id.pendingButton);
+            foodQuantity = itemView.findViewById(R.id.foodQuantity);
         }
     }
 }
