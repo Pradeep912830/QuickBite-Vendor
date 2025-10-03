@@ -4,15 +4,21 @@ public class PendingOrder {
     private String foodName;
     private String foodImage;
     private int foodPrice;
+    private String orderId;
+    private String userId;
     private String pendingButton;
     private int foodQuantity;
+    private String itemId;
 
-    public PendingOrder(String foodImage, String foodName, int foodPrice, int foodQuantity, String pendingButton) {
+    public PendingOrder(String foodImage, String foodName, int foodPrice, int foodQuantity, String pendingButton, String orderId, String userId, String itemId) {
         this.foodImage = foodImage;
         this.foodName = foodName;
         this.foodPrice = foodPrice;
         this.foodQuantity = foodQuantity;
         this.pendingButton = pendingButton;
+        this.orderId = orderId;
+        this.userId = userId;
+        this.itemId = itemId;
     }
 
     public String getFoodName() {
@@ -21,6 +27,30 @@ public class PendingOrder {
 
     public void setFoodName(String foodName) {
         this.foodName = foodName;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public String getItemId() {
+        return itemId;
+    }
+
+    public void setItemId(String itemId) {
+        this.itemId = itemId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public String getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(String orderId) {
+        this.orderId = orderId;
     }
 
     public String getFoodImage() {

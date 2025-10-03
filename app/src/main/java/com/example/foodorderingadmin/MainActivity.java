@@ -84,7 +84,10 @@ public class MainActivity extends AppCompatActivity {
         totalMoney.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "This feature will be implemented very soon!", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(MainActivity.this, "This feature will be implemented very soon!", Toast.LENGTH_SHORT).show();
+
+                Intent intent = new Intent(MainActivity.this, DetailsItemActivity.class);
+                startActivity(intent);
             }
         });
 

@@ -19,6 +19,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.foodorderingadmin.Adapter.PendingOrderAdapter;
 import com.example.foodorderingadmin.Model.PendingOrder;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -29,11 +31,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AdminPendingOrder extends AppCompatActivity {
-
     private RecyclerView pendingRecyclerView;
     private PendingOrderAdapter adapter;
     private List<PendingOrder> orderList;
-
+    String orderId;
+    String userId;
+    String itemId;
     private DatabaseReference reference;
 
     ImageView backButton;
@@ -64,20 +67,22 @@ public class AdminPendingOrder extends AppCompatActivity {
                 orderList.clear();
 
                 for(DataSnapshot userSnapshot : snapshot.getChildren()){
+                    userId = userSnapshot.getKey();
 
                     for(DataSnapshot orderSnapshot : userSnapshot.getChildren()){
 
-                        String orderId = orderSnapshot.getKey();
+                        orderId = orderSnapshot.getKey();
                         String status = orderSnapshot.child("status").getValue(String.class);
                         Integer totalAmount = orderSnapshot.child("totalAmount").getValue(Integer.class);
                         Integer totalQuantity = orderSnapshot.child("totalQuantity").getValue(Integer.class);
 
                         for(DataSnapshot itemSnapshot : orderSnapshot.child("item").getChildren()){
+                            itemId = itemSnapshot.getKey();
                             String imageUrl = itemSnapshot.child("imageUrl").getValue(String.class);
                             String name = itemSnapshot.child("name").getValue(String.class);
 
                             PendingOrder order = new PendingOrder(imageUrl, name,
-                                    totalAmount != null ? totalAmount : 0, totalQuantity != null ? totalQuantity : 0, status);
+                                    totalAmount != null ? totalAmount : 0, totalQuantity != null ? totalQuantity : 0, status, orderId, userId, itemId);
 
                             orderList.add(order);
                         }

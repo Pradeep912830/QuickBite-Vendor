@@ -1,6 +1,7 @@
 package com.example.foodorderingadmin.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.appcompat.widget.AppCompatButton;
 
 import com.bumptech.glide.Glide;
+import com.example.foodorderingadmin.DetailsItemActivity;
 import com.example.foodorderingadmin.Model.PendingOrder;
 import com.example.foodorderingadmin.R;
 
@@ -41,8 +43,15 @@ public class PendingOrderAdapter extends RecyclerView.Adapter<PendingOrderAdapte
         holder.foodQuantity.setText(String.valueOf(order.getFoodQuantity()));
         holder.foodPrice.setText(String.valueOf(order.getFoodPrice()));
         holder.pendingButton.setText(order.getPendingButton());
-
         Glide.with(context).load(order.getFoodImage()).into(holder.foodImage);
+
+        holder.itemView.setOnClickListener(v -> {
+            Intent intent = new Intent(context, DetailsItemActivity.class);
+            intent.putExtra("userId", order.getUserId());
+            intent.putExtra("orderId", order.getOrderId());
+            intent.putExtra("itemId", order.getItemId());
+            context.startActivity(intent);
+        });
 
     }
 
