@@ -54,7 +54,9 @@ public class AdminAllItem extends AppCompatActivity {
                     FoodItem item = dataSnapshot.getValue(FoodItem.class);
                     if (item != null) {
                         item.setKey(dataSnapshot.getKey());
-                        itemList.add(item);
+                        if(!itemList.contains(item)){
+                            itemList.add(item);
+                        }
                     }
                 }
                 adapter.notifyDataSetChanged();

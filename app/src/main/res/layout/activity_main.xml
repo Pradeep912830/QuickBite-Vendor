@@ -75,7 +75,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Pending Order"
+                        android:text="Pending Orders"
                         android:textAlignment="center"
                         android:layout_marginLeft="1dp"
                         android:textColor="@color/color_dark"
@@ -94,7 +94,7 @@
 
                 <!-- Completed Order -->
                 <LinearLayout
-                    android:id="@+id/completedOrder"
+                    android:id="@+id/acceptedItem"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -110,7 +110,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Completed Order"
+                        android:text="Accepted    Orders"
                         android:textAlignment="center"
                         android:textColor="@color/color_dark"
                         android:textSize="17sp"
@@ -143,7 +143,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Whole time earning"
+                        android:text="Whole time earnings"
                         android:textAlignment="center"
                         android:textColor="@color/color_dark"
                         android:textSize="17sp"

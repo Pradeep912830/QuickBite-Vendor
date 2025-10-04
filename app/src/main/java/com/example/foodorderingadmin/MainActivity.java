@@ -27,7 +27,7 @@ import com.google.firebase.auth.FirebaseAuth;
 public class MainActivity extends AppCompatActivity {
 
     LinearLayout addItem, allItems, pendingOrder, outForDelivery, profile, newUser, logOut,
-            wholeTimeEarning, completedOrder, feedback, totalMoney;
+            wholeTimeEarning, acceptedItem, feedback, totalMoney;
     ProgressBar progressBar;
     FrameLayout loadingOverLay;
     @SuppressLint("MissingInflatedId")
@@ -51,16 +51,17 @@ public class MainActivity extends AppCompatActivity {
         logOut = findViewById(R.id.logOut);
         progressBar = findViewById(R.id.progressBar);
         loadingOverLay = findViewById(R.id.lodingOverLay);
-        completedOrder = findViewById(R.id.completedOrder);
+        acceptedItem = findViewById(R.id.acceptedItem);
         wholeTimeEarning = findViewById(R.id.wholeTimeEarning);
         feedback = findViewById(R.id.feedback);
         totalMoney = findViewById(R.id.totalMoney);
 
 
-        completedOrder.setOnClickListener(new View.OnClickListener() {
+        acceptedItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "This feature will be implemented very soon!", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getApplicationContext(), AcceptedItem.class);
+                startActivity(intent);
             }
         });
 
