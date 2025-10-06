@@ -50,6 +50,7 @@ public class PendingOrderAdapter extends RecyclerView.Adapter<PendingOrderAdapte
             intent.putExtra("userId", order.getUserId());
             intent.putExtra("orderId", order.getOrderId());
             intent.putExtra("itemId", order.getItemId());
+            intent.putExtra("accepted", "pendingValue");
             context.startActivity(intent);
         });
 

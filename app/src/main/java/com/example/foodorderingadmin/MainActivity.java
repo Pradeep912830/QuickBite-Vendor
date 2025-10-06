@@ -10,6 +10,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -24,12 +25,15 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class MainActivity extends AppCompatActivity {
+import java.util.Objects;
 
+public class MainActivity extends AppCompatActivity {
+    TextView pendingMoney, acceptedMoney, totalEarningMoney;
     LinearLayout addItem, allItems, pendingOrder, outForDelivery, profile, newUser, logOut,
             wholeTimeEarning, acceptedItem, feedback, totalMoney;
     ProgressBar progressBar;
     FrameLayout loadingOverLay;
+
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +59,10 @@ public class MainActivity extends AppCompatActivity {
         wholeTimeEarning = findViewById(R.id.wholeTimeEarning);
         feedback = findViewById(R.id.feedback);
         totalMoney = findViewById(R.id.totalMoney);
+
+        pendingMoney = findViewById(R.id.pendingMoney);
+        acceptedItem = findViewById(R.id.acceptedItem);
+        totalEarningMoney = findViewById(R.id.totalEarningMoney);
 
 
         acceptedItem.setOnClickListener(new View.OnClickListener() {

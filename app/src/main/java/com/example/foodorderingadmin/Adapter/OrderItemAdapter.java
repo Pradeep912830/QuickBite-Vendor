@@ -5,57 +5,61 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.foodorderingadmin.Model.OrderItem;
+import com.example.foodorderingadmin.Model.PendingOrder;
 import com.example.foodorderingadmin.R;
 
 import java.util.List;
 
 public class OrderItemAdapter extends RecyclerView.Adapter<OrderItemAdapter.ViewHolder> {
 
-    private List<OrderItem> orderItemList;
+    private List<PendingOrder> orderItemList;
     private Context context;
 
-    public OrderItemAdapter(Context context, List<OrderItem> orderItemList) {
+    public OrderItemAdapter(Context context, List<PendingOrder> orderItemList) {
         this.context = context;
         this.orderItemList = orderItemList;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        TextView foodName, payment, received;
-        ImageButton btnSuccessful;
+        ImageView foodImage;
+        TextView foodName, foodPrice, foodQuantity;
+        AppCompatButton pendingButton;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            foodName = itemView.findViewById(R.id.food_name);
-            payment = itemView.findViewById(R.id.payment);
-            received = itemView.findViewById(R.id.received);
-            btnSuccessful = itemView.findViewById(R.id.btnSuccessful);
+            foodImage = itemView.findViewById(R.id.foodImage);
+            foodName = itemView.findViewById(R.id.foodName);
+            foodPrice = itemView.findViewById(R.id.foodPrice);
+            pendingButton = itemView.findViewById(R.id.pendingButton);
+            foodQuantity = itemView.findViewById(R.id.foodQuantity);
         }
     }
 
     @Override
     public OrderItemAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.delivered_item, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.pending_item, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(OrderItemAdapter.ViewHolder holder, int position) {
-        OrderItem item = orderItemList.get(position);
+        PendingOrder item = orderItemList.get(position);
 
-        holder.foodName.setText(item.getCustomerName());
-        holder.payment.setText(item.getPaymentType());
-        holder.received.setText(item.getStatus());
+        holder.foodName.setText(item.getFoodName());
+        holder.foodQuantity.setText(String.valueOf(item.getFoodQuantity()));
+        holder.foodPrice.setText(String.valueOf(item.getFoodPrice()));
+        holder.pendingButton.setText(item.getPendingButton());
+        Glide.with(context).load(item.getFoodImage()).into(holder.foodImage);
 
-        holder.btnSuccessful.setOnClickListener(v -> {
-            Toast.makeText(context, item.getCustomerName() + " marked as successful", Toast.LENGTH_SHORT).show();
-            // Optionally change status or remove item
-        });
     }
 
     @Override

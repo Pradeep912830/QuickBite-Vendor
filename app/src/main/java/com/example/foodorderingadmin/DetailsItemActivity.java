@@ -60,31 +60,46 @@ public class DetailsItemActivity extends AppCompatActivity {
         String userId = getIntent().getStringExtra("userId");
         String orderId = getIntent().getStringExtra("orderId");
         String itemId = getIntent().getStringExtra("itemId");
+        String accepted = getIntent().getStringExtra("accepted");
         reference = FirebaseDatabase.getInstance().getReference("Orders").child(userId).child(orderId);
 
 
-        pending.setOnClickListener(v ->{
-            if(userId != null && orderId != null){
-                DatabaseReference statusRef = FirebaseDatabase.getInstance()
-                        .getReference("Orders").child(userId)
-                        .child(orderId).child("status");
+        if(accepted.equals("acceptedValue")){
+            pending.setOnClickListener(v ->{
+                 if(userId != null && orderId != null){
+                     DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Orders").child(userId)
+                             .child(orderId).child("status");
 
-                statusRef.setValue("Accepted").addOnCompleteListener(task ->{
-                      if (task.isSuccessful()){
-                          pending.setText("Accepted");
-                          Toast.makeText(DetailsItemActivity.this, "Item status changed!", Toast.LENGTH_SHORT).show();
-                      }else {
-                          Toast.makeText(DetailsItemActivity.this, "Failed to changed the status!", Toast.LENGTH_SHORT).show();
-                      }
-                });
+                     ref.setValue("Item Dispatched").addOnCompleteListener(task -> {
+                         if(task.isSuccessful()){
+                             pending.setText("Item Dispatched");
+                             Toast.makeText(DetailsItemActivity.this, "Item Dispatched Successfully", Toast.LENGTH_SHORT).show();
+                         }else {
+                             Toast.makeText(DetailsItemActivity.this, "Failed to changed the status!", Toast.LENGTH_SHORT).show();
+                         }
+                     });
+                 }
+            });
 
-            }
-        });
+        }else if(accepted.equals("pendingValue")){
+            pending.setOnClickListener(v ->{
+                if(userId != null && orderId != null){
+                    DatabaseReference statusRef = FirebaseDatabase.getInstance()
+                            .getReference("Orders").child(userId)
+                            .child(orderId).child("status");
 
+                    statusRef.setValue("Accepted").addOnCompleteListener(task ->{
+                        if (task.isSuccessful()){
+                            pending.setText("Accepted");
+                            Toast.makeText(DetailsItemActivity.this, "Item Accepted Successfully", Toast.LENGTH_SHORT).show();
+                        }else {
+                            Toast.makeText(DetailsItemActivity.this, "Failed to changed the status!", Toast.LENGTH_SHORT).show();
+                        }
+                    });
 
-
-
-
+                }
+            });
+        }
 
 
 
@@ -97,6 +112,7 @@ public class DetailsItemActivity extends AppCompatActivity {
                     String customerNames = snapshot.child("name").getValue(String.class);
                     String phone = snapshot.child("phone").getValue(String.class);
                     String status = snapshot.child("status").getValue(String.class);
+                    pending.setText(status);
                     Integer totalAmount = snapshot.child("totalAmount").getValue(Integer.class);
                     Integer totalQuantities = snapshot.child("totalQuantity").getValue(Integer.class);
 

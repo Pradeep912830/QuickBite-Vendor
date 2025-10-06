@@ -43,10 +43,11 @@
         <!-- Card View -->
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="139dp"
+            android:layout_height="130dp"
             android:layout_margin="14dp"
             app:cardCornerRadius="10dp"
-            android:background="#F4F4F4"
+            android:backgroundTint="@color/white"
+            android:background="@color/white"
             android:elevation="15dp"
             android:padding="10dp">
 
@@ -63,6 +64,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center"
+                    android:layout_gravity="center"
                     android:orientation="vertical">
 
                     <ImageView
@@ -75,21 +77,40 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Pending Orders"
+                        android:text="Pending orders"
                         android:textAlignment="center"
                         android:layout_marginLeft="1dp"
                         android:textColor="@color/color_dark"
                         android:textSize="17sp"
-                        android:layout_marginTop="10dp"/>
+                        android:layout_marginTop="5dp"/>
 
-                    <TextView
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="56$"
-                        android:textStyle="bold"
-                        android:layout_marginTop="10dp"
-                        android:textSize="18sp"
-                        android:textColor="@color/black"/>
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:layout_marginTop="5dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="₹ "
+                            android:textColor="@color/black"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+
+                        <TextView
+                            android:id="@+id/pendingMoney"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textColor="@color/black"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
                 </LinearLayout>
 
                 <!-- Completed Order -->
@@ -98,6 +119,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:layout_gravity="center"
                     android:gravity="center"
                     android:orientation="vertical">
 
@@ -110,20 +132,38 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Accepted    Orders"
+                        android:text="Accepted orders"
                         android:textAlignment="center"
                         android:textColor="@color/color_dark"
                         android:textSize="17sp"
-                        android:layout_marginTop="10dp"/>
+                        android:layout_marginTop="5dp"/>
 
-                    <TextView
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="56$"
-                        android:textStyle="bold"
-                        android:layout_marginTop="10dp"
-                        android:textSize="18sp"
-                        android:textColor="#F8DF02"/>
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:layout_marginTop="5dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="₹ "
+                            android:textColor="@color/black"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/acceptedMoney"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textColor="@color/black"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
                 </LinearLayout>
 
                 <!-- Whole Time Earning -->
@@ -138,25 +178,43 @@
                     <ImageView
                         android:layout_width="30dp"
                         android:layout_height="30dp"
-                        android:src="@drawable/dollor" />
+                        android:src="@drawable/baseline_currency_rupee_24"
+                        app:tint="#F670D003" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Whole time earnings"
+                        android:text="Total earnings"
                         android:textAlignment="center"
                         android:textColor="@color/color_dark"
                         android:textSize="17sp"
-                        android:layout_marginTop="10dp"/>
+                        android:layout_marginTop="5dp"/>
 
-                    <TextView
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="56$"
-                        android:textStyle="bold"
-                        android:layout_marginTop="10dp"
-                        android:textSize="18sp"
-                        android:textColor="#F670D003"/>
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:layout_marginTop="5dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="₹ "
+                            android:textColor="@color/black"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/totalEarningMoney"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textColor="@color/black"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
                 </LinearLayout>
 
             </LinearLayout>

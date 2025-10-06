@@ -3,6 +3,7 @@ package com.example.foodorderingadmin;
 import static android.app.ProgressDialog.show;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageView;
@@ -38,7 +39,6 @@ public class AdminPendingOrder extends AppCompatActivity {
     String userId;
     String itemId;
     private DatabaseReference reference;
-
     ImageView backButton;
 
     @SuppressLint("MissingInflatedId")
@@ -83,7 +83,7 @@ public class AdminPendingOrder extends AppCompatActivity {
 
                             PendingOrder order = new PendingOrder(imageUrl, name, totalAmount != null ? totalAmount : 0, totalQuantity != null ? totalQuantity : 0, status, orderId, userId, itemId);
 
-                            if(!order.getPendingButton().equals("Accepted") && (!orderList.contains(order))){
+                            if(!order.getPendingButton().equals("Accepted") && !order.getPendingButton().equals("Item Dispatched")&& (!orderList.contains(order))){
                                 orderList.add(order);
                             }
 
@@ -98,9 +98,6 @@ public class AdminPendingOrder extends AppCompatActivity {
                 Log.e("FirebaseError", error.getMessage());
             }
         });
-
-
-
-
     }
+
 }

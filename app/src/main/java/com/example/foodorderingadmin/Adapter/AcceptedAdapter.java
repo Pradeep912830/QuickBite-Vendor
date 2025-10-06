@@ -1,6 +1,7 @@
 package com.example.foodorderingadmin.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import androidx.appcompat.widget.AppCompatButton;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.foodorderingadmin.DetailsItemActivity;
 import com.example.foodorderingadmin.Model.PendingOrder;
 import com.example.foodorderingadmin.R;
 
@@ -41,6 +43,17 @@ public class AcceptedAdapter extends RecyclerView.Adapter<AcceptedAdapter.ViewHo
         holder.foodPrice.setText(String.valueOf(order.getFoodPrice()));
         holder.pendingButton.setText(order.getPendingButton());
         Glide.with(context).load(order.getFoodImage()).into(holder.foodImage);
+
+        holder.itemView.setOnClickListener(v ->{
+            Intent intent = new Intent(context, DetailsItemActivity.class);
+            intent.putExtra("userId", order.getUserId());
+            intent.putExtra("orderId", order.getOrderId());
+            intent.putExtra("itemId", order.getItemId());
+            intent.putExtra("accepted", "acceptedValue");
+            context.startActivity(intent);
+        });
+
+
     }
 
     @Override

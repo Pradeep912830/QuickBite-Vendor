@@ -82,7 +82,7 @@ public class AcceptedItem extends AppCompatActivity {
 
                             PendingOrder order = new PendingOrder(imageUrl, name, totalAmount != null ? totalAmount : 0, totalQuantity != null ? totalQuantity : 0, status, orderId, userId, itemId);
 
-                            if(!order.getPendingButton().equals("Pending")){
+                            if(!order.getPendingButton().equals("Pending") && !order.getPendingButton().equals("Item Dispatched")){
                                 orderList.add(order);
                             }
                         }
